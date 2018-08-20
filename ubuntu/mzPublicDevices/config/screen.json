@@ -1,0 +1,7 @@
+{
+	"screens":[
+		{"name":"s1","left":"p2","right":"p1","top":"p4","bootom":"p5"},
+		{"name":"p1","left":"s1","right":"p3","top":"p7","bootom":"p8"},
+		{"name":"p2","left":"k1","right":"s1","top":"k3","bootom":"k4"}
+	]
+}

@@ -1,0 +1,179 @@
+Help on class PyKeyboardEvent in module pykeyboard.x11:
+
+class PPyyKKeeyybbooaarrddEEvveenntt(pykeyboard.base.PyKeyboardEventMeta)
+ |  The PyKeyboardEvent implementation for X11 systems (mostly linux). This
+ |  allows one to listen for keyboard input.
+ |  
+ |  Method resolution order:
+ |      PyKeyboardEvent
+ |      pykeyboard.base.PyKeyboardEventMeta
+ |      threading.Thread
+ |      threading._Verbose
+ |      __builtin__.object
+ |  
+ |  Methods defined here:
+ |  
+ |  ____iinniitt____(self, capture=False, display=None)
+ |  
+ |  aasscciiii__pprriinnttaabbllee(self, keysym)
+ |      If the keysym corresponds to a non-printable ascii character this will
+ |      return False. If it is printable, then True will be returned.
+ |      
+ |      ascii 11 (vertical tab) and ascii 12 are printable, chr(11) and chr(12)
+ |      will return '' and '' respectively.
+ |  
+ |  ccoonnffiigguurree__kkeeyyss(self)
+ |      This function locates the keycodes corresponding to special groups of
+ |      keys and creates data structures of them for use by the PyKeyboardEvent
+ |      instance; including the keypad keys and the modifiers.
+ |      
+ |      The keycodes pertaining to the keyboard modifiers are assigned by the
+ |      modifier name in a dictionary. This dictionary can be accessed in the
+ |      following manner:
+ |          self.modifier_keycodes['Shift']  # All keycodes for Shift Masking
+ |      
+ |      It also assigns certain named modifiers (Alt, Num_Lock, Super), which
+ |      may be dynamically assigned to Mod1 - Mod5 on different platforms. This
+ |      should generally allow the user to do the following lookups on any
+ |      system:
+ |          self.modifier_keycodes['Alt']  # All keycodes for Alt Masking
+ |          self.modifiers['Alt']  # State of Alt mask, non-zero if "ON"
+ |  
+ |  eessccaappee(self, event)
+ |  
+ |  ggeett__ttrraannssllaattiioonn__ddiiccttss(self)
+ |      Returns dictionaries for the translation of keysyms to strings and from
+ |      strings to keysyms.
+ |  
+ |  hhaannddlleerr(self, reply)
+ |      Upper level handler of keyboard events.
+ |  
+ |  llooookkuupp__cchhaarr__ffrroomm__kkeeyyccooddee(self, keycode)
+ |      This will conduct a lookup of the character or string associated with a
+ |      given keycode.
+ |  
+ |  llooookkuupp__cchhaarraacctteerr__kkeeyyccooddee(self, character)
+ |      Looks up the keysym for the character then returns the keycode mapping
+ |      for that keysym.
+ |  
+ |  rruunn(self)
+ |      Begin listening for keyboard input events.
+ |  
+ |  ssttoopp(self)
+ |      Stop listening for keyboard input events.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from pykeyboard.base.PyKeyboardEventMeta:
+ |  
+ |  ttaapp(self, keycode, character, press)
+ |      Subclass this method with your key event handler. It will receive
+ |      the keycode associated with the key event, as well as string name for
+ |      the key if one can be assigned (keyboard mask states will apply). The
+ |      argument 'press' will be True if the key was depressed and False if the
+ |      key was released.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from pykeyboard.base.PyKeyboardEventMeta:
+ |  
+ |  kkeeyy = 'Function'
+ |  
+ |  mmooddiiffiieerr__bbiittss = {'Alt': 0, 'AltGr': 0, 'Caps_Lock': 0, 'Command': 0, '...
+ |  
+ |  mmooddiiffiieerrss = {'Alt': False, 'AltGr': False, 'Caps_Lock': False, 'Comman...
+ |  
+ |  ssttaattee = 0
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from threading.Thread:
+ |  
+ |  ____rreepprr____(self)
+ |  
+ |  ggeettNNaammee(self)
+ |  
+ |  iissAAlliivvee(self)
+ |      Return whether the thread is alive.
+ |      
+ |      This method returns True just before the run() method starts until just
+ |      after the run() method terminates. The module function enumerate()
+ |      returns a list of all alive threads.
+ |  
+ |  iissDDaaeemmoonn(self)
+ |  
+ |  iiss__aalliivvee = isAlive(self)
+ |      Return whether the thread is alive.
+ |      
+ |      This method returns True just before the run() method starts until just
+ |      after the run() method terminates. The module function enumerate()
+ |      returns a list of all alive threads.
+ |  
+ |  jjooiinn(self, timeout=None)
+ |      Wait until the thread terminates.
+ |      
+ |      This blocks the calling thread until the thread whose join() method is
+ |      called terminates -- either normally or through an unhandled exception
+ |      or until the optional timeout occurs.
+ |      
+ |      When the timeout argument is present and not None, it should be a
+ |      floating point number specifying a timeout for the operation in seconds
+ |      (or fractions thereof). As join() always returns None, you must call
+ |      isAlive() after join() to decide whether a timeout happened -- if the
+ |      thread is still alive, the join() call timed out.
+ |      
+ |      When the timeout argument is not present or None, the operation will
+ |      block until the thread terminates.
+ |      
+ |      A thread can be join()ed many times.
+ |      
+ |      join() raises a RuntimeError if an attempt is made to join the current
+ |      thread as that would cause a deadlock. It is also an error to join() a
+ |      thread before it has been started and attempts to do so raises the same
+ |      exception.
+ |  
+ |  sseettDDaaeemmoonn(self, daemonic)
+ |  
+ |  sseettNNaammee(self, name)
+ |  
+ |  ssttaarrtt(self)
+ |      Start the thread's activity.
+ |      
+ |      It must be called at most once per thread object. It arranges for the
+ |      object's run() method to be invoked in a separate thread of control.
+ |      
+ |      This method will raise a RuntimeError if called more than once on the
+ |      same thread object.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from threading.Thread:
+ |  
+ |  ddaaeemmoonn
+ |      A boolean value indicating whether this thread is a daemon thread (True) or not (False).
+ |      
+ |      This must be set before start() is called, otherwise RuntimeError is
+ |      raised. Its initial value is inherited from the creating thread; the
+ |      main thread is not a daemon thread and therefore all threads created in
+ |      the main thread default to daemon = False.
+ |      
+ |      The entire Python program exits when no alive non-daemon threads are
+ |      left.
+ |  
+ |  iiddeenntt
+ |      Thread identifier of this thread or None if it has not been started.
+ |      
+ |      This is a nonzero integer. See the thread.get_ident() function. Thread
+ |      identifiers may be recycled when a thread exits and another thread is
+ |      created. The identifier is available even after the thread has exited.
+ |  
+ |  nnaammee
+ |      A string used for identification purposes only.
+ |      
+ |      It has no semantics. Multiple threads may be given the same name. The
+ |      initial name is set by the constructor.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from threading._Verbose:
+ |  
+ |  ____ddiicctt____
+ |      dictionary for instance variables (if defined)
+ |  
+ |  ____wweeaakkrreeff____
+ |      list of weak references to the object (if defined)
